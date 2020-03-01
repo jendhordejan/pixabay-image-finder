@@ -2,12 +2,14 @@ import React from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import "./App.css";
 import NavBar from "./components/navbar/NavBar";
+import Search from "./components/search/Search";
 
 function App() {
   return (
     <MuiThemeProvider>
       <div>
-        <NavBar />)
+        <NavBar />
+        <Search />
       </div>
     </MuiThemeProvider>
   );
