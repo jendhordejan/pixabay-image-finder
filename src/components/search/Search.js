@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField"; //equivent to input tag
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import axios from "axios";
+import ImageResults from "../image-results/ImageResults";
 
 class Search extends Component {
   state = {
@@ -22,9 +23,18 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
+  checkSearchValue = searchValue => {
+    if (searchValue === "") {
+      this.setState({ images: [] });
+    } else {
+      this.handleSubmit();
+    }
+  };
+
   handleOnChange = event => {
+    const val = event.target.value;
     this.setState({ [event.target.name]: event.target.value });
-    this.handleSubmit();
+    this.checkSearchValue(val);
   };
 
   handleOnAmountChange = (event, index, value) => {
@@ -61,6 +71,9 @@ class Search extends Component {
           <MenuItem value={50}>50</MenuItem>
         </Select>
         <br />
+        {this.state.images.length > 0 ? (
+          <ImageResults images={this.state.images} />
+        ) : null}
       </div>
     );
   }
